@@ -1,0 +1,13 @@
+tasks:
+    - init: gradle build
+      command: echo "Replace me with something that should run on every start, or just
+        remove me entirely."
+  image:
+    file: .gitpod.Dockerfile
+  vscode:
+    extensions:
+      - vscjava.vscode-java-debug
+      - vscjava.vscode-java-pack
+      - esbenp.prettier-vscode
+      - wesbos.theme-cobalt2
+      - ms-ceintl.vscode-language-pack-ru
