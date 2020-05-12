@@ -7,70 +7,102 @@ import java.util.Scanner;
 
 public class App {
 
-    public static void main(String[] args) {
-        // Set up scanner for both tasks
-        Scanner in = new Scanner(System.in);
-        System.out.println("Reverse the array using stack:");
-        reverseConsole(in);
-        System.out.println("Reverse even items:");
-        oddEvenConsole(in);
-        in.close(); // Close input
+  public static void main(String[] args) {
+    // Set up scanner for both tasks
+    Scanner in = new Scanner(System.in);
+    System.out.println("Reverse the array using stack:");
+    reverseConsole(in);
+    System.out.println("Reverse even items:");
+    oddEvenConsole(in);
+    in.close(); // Close input
+  }
+
+  /**
+   * Reverse the array
+   * 
+   * @param items array of items
+   */
+  public static int[] reverseOdd(int[] items) {
+    int estimatedLength = (items.length / 2) + 1;
+    IStack stack = new ArrayStack(estimatedLength);
+    IStack queue = new ArrayQueue(estimatedLength);
+
+    int[] result = new int[items.length];
+
+    // Input the things in a stack and queue
+    for (int i = 0; i< items.length; i++) {
+      if (i%2==0) {
+        queue.push(items[i]);
+      } else {
+        stack.push(items[i]);
+      }
+    } 
+
+    // Loop once again to get the result
+    for (int i =0; i< items.length; i++) {
+      if (i%2==0) {
+        result[i] = queue.pop();
+      } else {
+        result[i] = stack.pop();
+      }
+    } 
+
+    return result;
+  }
+
+  /**
+   * Reverse even array elements 
+   * @param items array of items
+   */
+  public static int[] reverse(int[] items) {
+    IStack stack = new ArrayStack(items.length);
+    int[] result = new int[items.length];
+    for (int i = 0; i < items.length; i++) {
+      stack.push(items[i]);
+    }
+    for (int i = 0; i < items.length; i++) {
+      result[i] = stack.pop();
+    }
+    return result;
+  }
+
+  public static void reverseConsole(Scanner in) {
+    // Using Scanner for Getting Input from User
+    IStack stack = new ArrayStack(50);
+    int temp = in.nextInt();
+    while (temp != 0) {
+      stack.push(temp);
+      temp = in.nextInt();
+    }
+    while (!stack.isEmpty()) {
+      System.out.println(stack.pop());
     }
 
-    /**
-     * Reverse the array
-     * 
-     * @param items array of items
-     */
-    public static int[] reverse(int[] items) {
-        IStack stack = new ArrayStack(50);
-        int[] result = new int[items.length];
-        for (int i = 0; i < items.length; i++) {
-            stack.push(items[i]);
-        }
-        for (int i = 0; i < items.length; i++) {
-            result[i] = stack.pop();
-        }
-        return result;
+  }
+
+  public static void oddEvenConsole(Scanner in) {
+    // Using Scanner for Getting Input from User
+    IStack stack = new ArrayStack(50);
+    IStack queue = new ArrayQueue(50);
+
+    int temp = in.nextInt();
+    boolean odd = true;
+    while (temp != 0) {
+      if (odd)
+        queue.push(temp);
+      else
+        stack.push(temp);
+      odd = !odd;
+      temp = in.nextInt();
     }
 
-    public static void reverseConsole(Scanner in) {
-        // Using Scanner for Getting Input from User
-        IStack stack = new ArrayStack(50);
-        int temp = in.nextInt();
-        while (temp != 0) {
-            stack.push(temp);
-            temp = in.nextInt();
-        }
-        while (!stack.isEmpty()) {
-            System.out.println(stack.pop());
-        }
-
+    System.out.println("Stack content:");
+    while (!stack.isEmpty()) {
+      System.out.print(stack.pop() + " ");
     }
-
-    public static void oddEvenConsole(Scanner in) {
-        // Using Scanner for Getting Input from User
-        IStack stack = new ArrayStack(50);
-        IStack queue = new ArrayQueue(50);
-
-        int temp = in.nextInt();
-        boolean odd = true;
-        while (temp != 0) {
-            if (odd)
-                queue.push(temp);
-            else
-                stack.push(temp);
-            odd = !odd;
-            temp = in.nextInt();
-        }
-
-        System.out.println("Stack content:");
-        while (!stack.isEmpty()) {
-            System.out.print(stack.pop() + " ");
-        }
-        System.out.println("\nQueue content:");
-        while (!queue.isEmpty()) {
-            System.out.print(queue.pop() + " ");
-        }
+    System.out.println("\nQueue content:");
+    while (!queue.isEmpty()) {
+      System.out.print(queue.pop() + " ");
     }
+  }
 }

@@ -3,8 +3,6 @@ tasks:
 
 vscode:
   extensions:
-    - vscjava.vscode-java-debug
-    - vscjava.vscode-java-pack
-    - esbenp.prettier-vscode
-    - wesbos.theme-cobalt2
-    - ms-ceintl.vscode-language-pack-ru
+    - MS-CEINTL.vscode-language-pack-ru@1.45.1:3BPmaymIp042N9IQup7YKg==
+    - wesbos.theme-cobalt2@2.1.6:VWNPJwfSoLU7CBtR//auFA==
+    - esbenp.prettier-vscode@4.6.0:3ul2z2dsx8yqcbS8VovpnQ==

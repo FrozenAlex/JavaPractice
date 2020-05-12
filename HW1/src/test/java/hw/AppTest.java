@@ -16,4 +16,12 @@ public class AppTest {
         // assertNotNull("app should have a greeting", classUnderTest.getGreeting());
     }
     
+    @Test
+    public void testReverseOdd() {
+        int[] testArray = { 1, 2, 3, 4, 5 };
+        int[] reverseArray = { 1, 4, 3, 2, 5 };
+        int[] result = App.reverseOdd(testArray);
+        assertArrayEquals("Array should be reversed", reverseArray, result);
+        // assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+    }
 }
