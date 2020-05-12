@@ -1,8 +1,8 @@
 package hw;
 
 public abstract class AStack {
-    private int[] arr;
-    private int capacity;
+    int[] arr;
+    int capacity;
 
     AStack(int capacity) {
         this.capacity = capacity;
