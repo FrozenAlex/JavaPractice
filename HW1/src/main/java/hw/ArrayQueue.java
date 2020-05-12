@@ -4,64 +4,59 @@ package hw;
  * Array Queue implementation circular queue.
  */
 public class ArrayQueue implements IStack {
-    int[] arr;
-    int capacity;
-    int front, back;
+  int[] arr;
+  int capacity;
+  int back, front;
 
-    ArrayQueue(int capacity) {
-        this.capacity = capacity;
-        arr = new int[capacity];
-        front = back = -1;
-    }
+  ArrayQueue(int capacity) {
+    this.capacity = capacity;
+    arr = new int[capacity];
+    back = front = -1;
+  }
 
-    /** Dequeue */
-    @Override
-    public int pop() {
-        if (isEmpty() == true) {
-            System.out.println("Queue is empty!");
-            return 0;
-        } else {
-            int item = arr[front];
-            if (front == back)
-                front = back = -1;
-            else
-                front = (front + 1) % capacity;
-            return item;
-        }
-    }
+  /** Dequeue */
+  @Override
+  public int pop() {
+    if (isEmpty())
+      throw new Error("Queue is empty");
 
-    /**
-     * Enqueue
-     */
-    @Override
-    public void push(int item) {
-        if (isFull())
-            System.out.println("Queue is full!");
-        else {
-            back = (back + 1) % capacity;
-            arr[back] = item;
-            if (front == -1)
-                front = back;
-        }
-    }
+    int item = arr[back];
+    if (back == front)
+      back = front = -1;
+    else
+      back = (back + 1) % capacity;
+    return item;
+  }
 
-    public boolean isFull() {
-        return (back + 1) % capacity == front;
+  /**
+   * Enqueue
+   */
+  @Override
+  public void push(int item) {
+    if (isFull())
+      throw new Error("Array is full");
+    else {
+      front = (front + 1) % capacity;
+      arr[front] = item;
+      if (back == -1)
+        back = front;
     }
+  }
 
-    @Override
-    public boolean isEmpty() {
-        return back == -1;
-    }
+  public boolean isFull() {
+    return (front + 1) % capacity == back;
+  }
 
-    @Override
-    public int peek() {
-        if (isEmpty()) {
-            System.out.println("Queue is empty");
-            return -1;
-        } else {
-            return arr[front];
-        }
-    }
+  @Override
+  public boolean isEmpty() {
+    return front == -1;
+  }
+
+  @Override
+  public int peek() {
+    if (isEmpty())
+      throw new Error("Queue is empty");
+    return arr[back];
+  }
 
 }
