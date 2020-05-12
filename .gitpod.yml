@@ -1,5 +1,5 @@
-tasks:
-  - init: gradle build
+#tasks:
+#  - init: gradle build
 
 vscode:
   extensions:
